@@ -7,9 +7,8 @@ public class ImageStatiqueModel {
 	{
 		Path = "";
 	}
-	
-	ImageStatiqueModel(String imagePath)
+	public void setPath(String pathImage)
 	{
-		Path = imagePath;
+		Path = pathImage;
 	}
 }
