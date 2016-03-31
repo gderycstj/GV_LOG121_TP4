@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JComponent;
+import javax.swing.border.TitledBorder;
 
 public class VuePerspective extends JComponent{
 	/**
@@ -13,11 +14,9 @@ public class VuePerspective extends JComponent{
 	private static final long serialVersionUID = 1279976614214775078L;
 	public static final Dimension DIMENSION = new Dimension(250,250);
 	VuePerspective(){
+		this.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	}
-	/*
-	 * Le Layout qui utilise (contient) FenetreFormes doit réserver 
-	 * l'espace nécessaire à son affichage
-	 */
+	
 	@Override 
 	public Dimension getPreferredSize(){
 		return DIMENSION;

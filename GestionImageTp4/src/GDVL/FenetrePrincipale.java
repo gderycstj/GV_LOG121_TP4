@@ -3,6 +3,8 @@ package GDVL;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import java.awt.Color;
+import javax.swing.border.TitledBorder;
 
 public class FenetrePrincipale extends JFrame {
 	/**
@@ -16,11 +18,11 @@ public class FenetrePrincipale extends JFrame {
 		VuePerspective vueGauche = new VuePerspective();
 		VuePerspective vueDroite = new VuePerspective();
 		
-		this.setLayout(new BorderLayout());
-		this.add(menu, BorderLayout.NORTH); 
-		this.add(vueStatique, BorderLayout.SOUTH);
-		this.add(vueGauche,BorderLayout.WEST);
-		this.add(vueDroite,BorderLayout.EAST);
+		getContentPane().setLayout(new BorderLayout());
+		getContentPane().add(menu, BorderLayout.NORTH); 
+		getContentPane().add(vueStatique, BorderLayout.SOUTH);
+		getContentPane().add(vueGauche,BorderLayout.WEST);
+		getContentPane().add(vueDroite,BorderLayout.EAST);
 		this.pack();
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
