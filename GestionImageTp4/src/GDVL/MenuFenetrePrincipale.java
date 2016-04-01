@@ -1,3 +1,15 @@
+/******************************************************
+Cours:  LOG121
+Projet: GestionImageTp4
+Nom du fichier: MenuFenetrePrincipale.java
+Date créé: 2016-03-31
+*******************************************************
+Historique des modifications
+*******************************************************
+*@author Vincent Leclerc(LECV07069406)
+*@author Gabriel Déry(DERG30049401)
+2016-02-18 Version initiale
+*******************************************************/  
 package GDVL;
 
 import java.awt.event.ActionEvent;
@@ -12,7 +24,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFileChooser;
 import java.io.File;   
 
-public class MenuFenetre extends JMenuBar{
+public class MenuFenetrePrincipale extends JMenuBar{
 	/**
 	 * 
 	 */
@@ -20,7 +32,7 @@ public class MenuFenetre extends JMenuBar{
 	private JMenuBar menuBar = new JMenuBar();
 	private JFileChooser fileChooser = new JFileChooser();
 	private String PathImage = "";
-	MenuFenetre()
+	MenuFenetrePrincipale()
 	{
 		JMenu menu = new JMenu("Image");
 		menu.setMnemonic(KeyEvent.VK_I);
@@ -28,7 +40,7 @@ public class MenuFenetre extends JMenuBar{
 		
 		JMenuItem menuItem = new JMenuItem("Charger Image",KeyEvent.VK_C);
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		menuItem.getAccessibleContext().setAccessibleDescription("image chargée");
+		menuItem.getAccessibleContext().setAccessibleDescription("Image chargée");
 		menuItem.addActionListener(new ActionListener(){
 			  public void actionPerformed(ActionEvent arg0) {
 				  FileNameExtensionFilter filter = new FileNameExtensionFilter("Images(jpg,png,jpeg)", "jpg", "png", "jpeg");

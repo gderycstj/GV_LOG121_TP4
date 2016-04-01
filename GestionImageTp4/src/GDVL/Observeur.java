@@ -1,7 +1,7 @@
 /******************************************************
 Cours:  LOG121
 Projet: GestionImageTp4
-Nom du fichier: ImageStatiqueModel.java
+Nom du fichier: Observeur.java
 Date créé: 2016-03-31
 *******************************************************
 Historique des modifications
@@ -12,15 +12,6 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
-public class ImageStatiqueModel {
-	String Path;
-	
-	ImageStatiqueModel()
-	{
-		Path = "";
+public interface Observeur {
+	  public void update(String str);
 	}
-	public void setPath(String pathImage)
-	{
-		Path = pathImage;
-	}
-}
