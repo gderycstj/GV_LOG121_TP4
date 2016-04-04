@@ -15,11 +15,16 @@ package GDVL;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 import javax.swing.JComponent;
 import javax.swing.border.TitledBorder;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class VuePerspective extends JComponent implements Observeur{
 	/**
@@ -27,6 +32,7 @@ public class VuePerspective extends JComponent implements Observeur{
 	 */
 	private static final long serialVersionUID = 1279976614214775078L;
 	private static final Dimension DIMENSION = new Dimension(300,300);
+	private String Path = "";
 	private ControleurPerspective controleur;
 	VuePerspective(ControleurPerspective cont){
 		controleur = cont;
@@ -54,5 +60,26 @@ public class VuePerspective extends JComponent implements Observeur{
 	public void update(String str) {
 		// TODO Auto-generated method stub
 		
+	} 
+	
+	public void setPath(String image)
+	{
+		Path = image;
+		repaint();
+	}
+	
+	public void paintComponent(Graphics g){
+		 if(Path != "")
+		 {
+			  try {
+			   BufferedImage  image = ImageIO.read(new File(Path));
+			   g.drawImage(image, 0, 30, 300,270,null);
+			   
+			   
+			  } catch (IOException e) {
+			   // TODO Auto-generated catch block
+			   e.printStackTrace();
+			  }  
+		}
 	}
 }

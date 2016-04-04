@@ -32,13 +32,12 @@ public class MenuFenetrePrincipale extends JMenuBar{
 	private JMenuBar menuBar = new JMenuBar();
 	private JFileChooser fileChooser = new JFileChooser();
 	private String PathImage = "";
-	MenuFenetrePrincipale()
+	MenuFenetrePrincipale(VueStatique vs,VuePerspective v1p,VuePerspective v2p)
 	{
 		JMenu menu = new JMenu("Image");
-		menu.setMnemonic(KeyEvent.VK_I);
 		menuBar.add(menu);
 		
-		JMenuItem menuItem = new JMenuItem("Charger Image",KeyEvent.VK_C);
+		JMenuItem menuItem = new JMenuItem("Charger Image");
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		menuItem.getAccessibleContext().setAccessibleDescription("Image chargée");
 		menuItem.addActionListener(new ActionListener(){
@@ -52,10 +51,23 @@ public class MenuFenetrePrincipale extends JMenuBar{
 				  if (resultat == JFileChooser.APPROVE_OPTION) {
 					  File selectedFile = fileChooser.getSelectedFile();
 					  PathImage = selectedFile.getAbsolutePath().toString();
+					  vs.setPath(PathImage);
+					  v1p.setPath(PathImage);
+					  v2p.setPath(PathImage);
 				  }
 			  }
 		});
 		menu.add(menuItem);	
+		JMenu menuCommande = new JMenu("Commande");
+		menuBar.add(menuCommande);
+		JMenuItem menuItemCommande = new JMenuItem("Annuler commande");
+		menuItemCommande.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+		menuItemCommande.addActionListener(new ActionListener(){
+			  public void actionPerformed(ActionEvent arg0) {
+				  
+			  }
+		});
+		menuCommande.add(menuItemCommande);
 		add(menuBar);	
 	}
 	

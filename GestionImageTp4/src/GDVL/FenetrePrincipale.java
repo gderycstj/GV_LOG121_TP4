@@ -25,7 +25,6 @@ public class FenetrePrincipale extends JFrame {
 	private static final long serialVersionUID = 2568028318000988008L;
 
 	FenetrePrincipale(){
-		MenuFenetrePrincipale menu = new MenuFenetrePrincipale();
 		VueStatique vueStatique = new VueStatique();		
 		//Instanciation du modèle
 	    PerspectiveModel Pers = new PerspectiveModel();
@@ -37,7 +36,8 @@ public class FenetrePrincipale extends JFrame {
 	    //Ajout des fenêtres comme observeur de notre modèle
 	    Pers.ajouterObserveur(vueGauche);
 	    Pers.ajouterObserveur(vueDroite);
-		
+	    
+	    MenuFenetrePrincipale menu = new MenuFenetrePrincipale(vueStatique,vueGauche,vueDroite);	
 		//Élément visuel
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(menu, BorderLayout.NORTH); 
