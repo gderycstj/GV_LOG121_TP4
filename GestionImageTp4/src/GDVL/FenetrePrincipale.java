@@ -36,7 +36,7 @@ public class FenetrePrincipale extends JFrame {
 	    VuePerspective vueGauche = new VuePerspective(controleur,Pers);
 	    VuePerspective vueDroite = new VuePerspective(controleur,Pers2);
 	    
-	    MenuFenetrePrincipale menu = new MenuFenetrePrincipale(vueStatique,vueGauche,vueDroite);	
+	    MenuFenetre menu = new MenuFenetre(vueStatique,vueGauche,vueDroite);	
 		//Élément visuel
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(menu, BorderLayout.NORTH); 

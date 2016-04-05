@@ -55,13 +55,6 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	    model.addObserver(this);  
 	    this.addMouseListener(this);
 	    this.addMouseWheelListener(this);
-		MenuFenetreVues menu = new MenuFenetreVues();
-		menu.setBounds(0, 0, 450, 32);
-		add(menu);
-		
-		JButton btnUndo = new JButton("Undo");
-		btnUndo.setBounds(383, 266, 57, 23);
-		add(btnUndo);
 		this.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	}
 	@Override 
@@ -80,7 +73,7 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 		 {
 			  try {
 			   BufferedImage  image = ImageIO.read(new File(model.getPath()));
-			   g.drawImage(image, 0 + model.getTranslation(), 30, 300*model.getNiveauZoom(),270*model.getNiveauZoom(),null);
+			   g.drawImage(image, 0 + model.getTranslation(), 0, 300*model.getNiveauZoom(),300*model.getNiveauZoom(),null);
 			   
 			  } catch (IOException e) {
 			   // TODO Auto-generated catch block
