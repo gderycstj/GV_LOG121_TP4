@@ -12,6 +12,34 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
-public class SauvegardeImage {
+import java.io.Serializable;
 
+public class SauvegardeImage implements Serializable{
+	String PathImage;
+	int Zoom;
+	int Translation;
+	
+	SauvegardeImage(String PathImage,int Zoom,int Translation)
+	{
+		this.PathImage = PathImage;
+		this.Zoom = Zoom;
+		this.Translation = Translation;
+	}
+	
+	public void setPathImage(String PathImage){
+		this.PathImage = PathImage;
+	}
+	
+	public void setZoom(int Zoom){
+		this.Zoom = Zoom;
+	}
+	
+	public void setTranslation(int Translation){
+		this.Translation = Translation;
+	}
+	
+	@Override
+	public String toString() {
+	return "Image [PathImage=" + this.PathImage + ", Zoom=" + this.Zoom + " Translation="+this.Translation +"]";
+	}
 }

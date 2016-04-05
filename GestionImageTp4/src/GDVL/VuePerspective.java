@@ -81,6 +81,18 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 			  }  
 		}
 	}
+	
+	public String getPath(){
+		return model.getPath();
+	}
+	
+	public int getZoom(){
+		return model.getNiveauZoom();
+	}
+	
+	public int getTranslation(){
+		return model.getTranslation();
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {

@@ -25,7 +25,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import java.io.File;   
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;   
 
 public class MenuFenetre extends JMenuBar{
 	/**
@@ -33,7 +36,7 @@ public class MenuFenetre extends JMenuBar{
 	 */
 	private static final long serialVersionUID = 2389774281279071077L;
 	private JMenuBar menuBar = new JMenuBar();
-	private JFileChooser fileChooser = new JFileChooser();
+	private JFileChooser fileChooser;
 	private String PathImage = "";
 	
 	MenuFenetre(VueStatique vs,VuePerspective v1p,VuePerspective v2p)
@@ -46,6 +49,7 @@ public class MenuFenetre extends JMenuBar{
 		menuItem.getAccessibleContext().setAccessibleDescription("Image chargée");
 		menuItem.addActionListener(new ActionListener(){
 			  public void actionPerformed(ActionEvent arg0) {
+				  fileChooser = new JFileChooser();
 				  FileNameExtensionFilter filter = new FileNameExtensionFilter("Images(jpg,png,jpeg)", "jpg", "png", "jpeg");
 				  fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 				  fileChooser.addChoosableFileFilter(filter);
@@ -71,11 +75,15 @@ public class MenuFenetre extends JMenuBar{
 				  {
 					  String PathSauvegarde = "";
 					  int resultat = -1;
+					  fileChooser = new JFileChooser();
+					  FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichier csv","csv");
+					  fileChooser.addChoosableFileFilter(filter);
+					  fileChooser.setAcceptAllFileFilterUsed(false);
 					  fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 					  fileChooser.setDialogTitle("Destination");
-					  fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					  fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 					  resultat = fileChooser.showOpenDialog(menuBar);
-					  while(resultat == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile().getAbsolutePath().contains(".csv")!= true)
+					  while(resultat == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile().getAbsolutePath().contains(".csv")== false)
 					  {
 						  //path ou on va enregistrer le fichier
 						  if(fileChooser.getSelectedFile().getAbsolutePath().contains(".csv") == false)
@@ -83,12 +91,37 @@ public class MenuFenetre extends JMenuBar{
 							  JOptionPane.showMessageDialog(null,"Le fichier que vous souhaitez créer doit être de type .csv");
 							  resultat = fileChooser.showOpenDialog(menuBar);
 						  }
-						  else
-						  {
-							  PathSauvegarde = fileChooser.getSelectedFile().getAbsolutePath();
-							  System.out.println(PathSauvegarde);
-							  //On peut lancer l'objet de sauvegarde
-						  }
+					  }
+					  if(resultat == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile().getAbsolutePath().contains(".csv")== true)
+					  {
+						  PathSauvegarde = fileChooser.getSelectedFile().getAbsolutePath();
+						  //On peut lancer l'objet de sauvegarde
+						  try {
+
+								String images = "";
+								SauvegardeImage save = new SauvegardeImage(v1p.getPath(),v1p.getZoom(),v1p.getTranslation());
+								images = save.toString()+"\n";
+								save.setPathImage(v2p.getPath());
+								save.setZoom(v2p.getZoom());
+								save.setTranslation(v2p.getTranslation());
+								images += save.toString()+"\n";
+
+								File file = new File(PathSauvegarde);
+
+								// if file doesnt exists, then create it
+								if (!file.exists()) {
+									file.createNewFile();
+								}
+
+								FileWriter fw = new FileWriter(file.getAbsoluteFile(),true);
+								BufferedWriter bw = new BufferedWriter(fw);
+								bw.append(images);
+								bw.close();
+								JOptionPane.showMessageDialog(null,"Sauvegarde terminée");
+
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 					  }
 				  }
 				  else{

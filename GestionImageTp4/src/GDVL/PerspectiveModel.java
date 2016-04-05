@@ -40,9 +40,16 @@ public class PerspectiveModel extends Observable {
 		notifyObservers();
 	}
 	
-	public String getPath()
-	{
+	public String getPath(){
 		return this.Path;
+	}
+	
+	public int getTranslation(){
+		return degreTranslation;
+	}
+
+	public int getNiveauZoom(){
+		return niveauZoom;
 	}
 	
 	public void effectuerZoom()
@@ -75,18 +82,6 @@ public class PerspectiveModel extends Observable {
 		degreTranslation-=20;
 		System.out.println("Niveau Translation: " + degreTranslation);
 		//notifyObserveur();
-	}
-	
-	public int getTranslation()
-	{
-		return degreTranslation;
-	}
-
-
-	public int getNiveauZoom()
-	{
-		return niveauZoom;
-		
 	}
 }
 
