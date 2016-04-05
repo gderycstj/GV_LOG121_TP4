@@ -12,7 +12,11 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
-public class ImageStatiqueModel {
+import java.util.ArrayList;
+import java.util.Observable;
+
+public class ImageStatiqueModel extends Observable {
+	
 	String Path;
 	
 	ImageStatiqueModel()
@@ -22,5 +26,6 @@ public class ImageStatiqueModel {
 	public void setPath(String pathImage)
 	{
 		Path = pathImage;
+		
 	}
 }

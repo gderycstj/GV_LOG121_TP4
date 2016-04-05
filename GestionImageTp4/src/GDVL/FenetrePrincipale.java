@@ -24,18 +24,17 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private static final long serialVersionUID = 2568028318000988008L;
 
-	FenetrePrincipale(){
+		FenetrePrincipale(){
+		setResizable(false);
 		VueStatique vueStatique = new VueStatique();		
 		//Instanciation du modèle
 	    PerspectiveModel Pers = new PerspectiveModel();
+	    PerspectiveModel Pers2 = new PerspectiveModel();
 	    //Création du contrôleur
 	    ControleurPerspective controleur = new ControleurPerspective(Pers);
 	    //Création des fenêtres avec le contrôleur en paramètre
-	    VuePerspective vueGauche = new VuePerspective(controleur);
-	    VuePerspective vueDroite = new VuePerspective(controleur);
-	    //Ajout des fenêtres comme observeur de notre modèle
-	    Pers.ajouterObserveur(vueGauche);
-	    Pers.ajouterObserveur(vueDroite);
+	    VuePerspective vueGauche = new VuePerspective(controleur,Pers);
+	    VuePerspective vueDroite = new VuePerspective(controleur,Pers2);
 	    
 	    MenuFenetrePrincipale menu = new MenuFenetrePrincipale(vueStatique,vueGauche,vueDroite);	
 		//Élément visuel

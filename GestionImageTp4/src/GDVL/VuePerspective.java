@@ -22,26 +22,39 @@ import javax.swing.border.TitledBorder;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class VuePerspective extends JComponent implements Observeur{
+public class VuePerspective extends JComponent implements Observer, MouseListener, MouseWheelListener{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1279976614214775078L;
 	private static final Dimension DIMENSION = new Dimension(300,300);
-	private String Path = "";
 	private ControleurPerspective controleur;
-	VuePerspective(ControleurPerspective cont){
-		controleur = cont;
+	private PerspectiveModel model;
+	
+	VuePerspective(ControleurPerspective cont, PerspectiveModel model){
+		this.controleur = cont;
+		this.model = model;
 		InitUI();
 	}
 	
 	private void InitUI()
 	{
 		setLayout(null);
+	    
+	  //Ajout des fenêtres comme observeur de notre modèle
+	    model.addObserver(this);  
+	    this.addMouseListener(this);
+	    this.addMouseWheelListener(this);
 		MenuFenetreVues menu = new MenuFenetreVues();
 		menu.setBounds(0, 0, 450, 32);
 		add(menu);
@@ -56,30 +69,66 @@ public class VuePerspective extends JComponent implements Observeur{
 		return DIMENSION;
 	}
 
-	@Override
-	public void update(String str) {
-		// TODO Auto-generated method stub
-		
-	} 
 	
 	public void setPath(String image)
 	{
-		Path = image;
-		repaint();
+		model.setPath(image);
 	}
 	
 	public void paintComponent(Graphics g){
-		 if(Path != "")
+		 if(model.getPath() != "")
 		 {
 			  try {
-			   BufferedImage  image = ImageIO.read(new File(Path));
-			   g.drawImage(image, 0, 30, 300,270,null);
-			   
+			   BufferedImage  image = ImageIO.read(new File(model.getPath()));
+			   g.drawImage(image, 0 + model.getTranslation(), 30, 300*model.getNiveauZoom(),270*model.getNiveauZoom(),null);
 			   
 			  } catch (IOException e) {
 			   // TODO Auto-generated catch block
 			   e.printStackTrace();
 			  }  
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		 repaint();
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		model.effectuerTranslation();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent arg0) {
+		// TODO Auto-generated method stub
+		model.effectuerZoom();
 	}
 }

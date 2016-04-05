@@ -32,6 +32,7 @@ public class MenuFenetrePrincipale extends JMenuBar{
 	private JMenuBar menuBar = new JMenuBar();
 	private JFileChooser fileChooser = new JFileChooser();
 	private String PathImage = "";
+	
 	MenuFenetrePrincipale(VueStatique vs,VuePerspective v1p,VuePerspective v2p)
 	{
 		JMenu menu = new JMenu("Image");
@@ -51,6 +52,7 @@ public class MenuFenetrePrincipale extends JMenuBar{
 				  if (resultat == JFileChooser.APPROVE_OPTION) {
 					  File selectedFile = fileChooser.getSelectedFile();
 					  PathImage = selectedFile.getAbsolutePath().toString();
+					  
 					  vs.setPath(PathImage);
 					  v1p.setPath(PathImage);
 					  v2p.setPath(PathImage);
