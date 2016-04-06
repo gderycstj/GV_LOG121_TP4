@@ -15,20 +15,25 @@ package GDVL;
 public class CommandeTranslation implements Commande {
 
 	PerspectiveModel model;
-	CommandeTranslation(PerspectiveModel model)
+	int posX;
+	int posY;
+	
+	CommandeTranslation(PerspectiveModel model,int posX,int posY)
 	{
 		this.model = model;
+		this.posX = posX;
+		this.posY = posY;
 	}
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub
-		model.effectuerTranslation();
+		model.effectuerTranslation(posX,posY);
 	}
 
 	@Override
 	public void undo() {
 		// TODO Auto-generated method stub
-		model.effectuerTranslationContraire();
+		model.effectuerTranslationContraire(posX,posY);
 	}
 
 }

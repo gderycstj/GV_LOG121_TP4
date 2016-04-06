@@ -15,20 +15,38 @@ package GDVL;
 public class CommandeZoom implements Commande {
 	
 	PerspectiveModel model;
+	Boolean typeZoom;
 	
-	public CommandeZoom(PerspectiveModel model)
+	public CommandeZoom(PerspectiveModel model,Boolean typeZoom)
 	{
+		this.typeZoom = typeZoom;
 		this.model = model;
 	}
 	@Override
 	public void execute() {
+		
 		// TODO Auto-generated method stub
-		model.effectuerZoom();
+		if(typeZoom == true)
+		{
+			model.effectuerZoom();
+		}
+		else
+		{
+			model.effectuerZoomContraire();
+		}
 	}
 
 	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
-		model.effectuerZoomContraire();
+		
+		if(typeZoom == true)
+		{
+			model.effectuerZoomContraire();
+		}
+		else
+		{
+			model.effectuerZoom();
+		}
+	
 	}
 }

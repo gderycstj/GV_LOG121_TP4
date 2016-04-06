@@ -12,16 +12,13 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
 import javax.swing.border.TitledBorder;
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
@@ -40,7 +37,9 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	private static final Dimension DIMENSION = new Dimension(300,300);
 	private ControleurPerspective controleur;
 	private PerspectiveModel model;
-	
+	private int positionXDepart;
+	private int positionYDepart;
+	private boolean estDansMemeVue = false;
 	VuePerspective(ControleurPerspective cont, PerspectiveModel model){
 		this.controleur = cont;
 		this.model = model;
@@ -65,16 +64,18 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	
 	public void setPath(String image)
 	{
-		model.setPath(image);
+		controleur.initialiserPath(image);
 	}
 	
 	public void paintComponent(Graphics g){
+
 		 if(model.getPath() != "")
 		 {
 			  try {
 			   BufferedImage  image = ImageIO.read(new File(model.getPath()));
-			   g.drawImage(image, 0 + model.getTranslation(), 0, 300*model.getNiveauZoom(),300*model.getNiveauZoom(),null);
+			   float largeurZoom = 300*model.getNiveauZoom();
 			   
+			  g.drawImage(image, 0 + model.getTranslationX(),0+model.getTranslationY(),Math.round(largeurZoom),Math.round(largeurZoom),null);
 			  } catch (IOException e) {
 			   // TODO Auto-generated catch block
 			   e.printStackTrace();
@@ -86,7 +87,7 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 		return model.getPath();
 	}
 	
-	public int getZoom(){
+	public float getZoom(){
 		return model.getNiveauZoom();
 	}
 	
@@ -104,7 +105,7 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		model.effectuerTranslation();
+
 	}
 
 	@Override
@@ -122,18 +123,43 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		positionXDepart = arg0.getX();
+		positionYDepart = arg0.getY();
+		System.out.println("je suis dans le mouse press");
+		estDansMemeVue = true;
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub
+		if(estDansMemeVue = true)
+		{
+			int posX = arg0.getX()- positionXDepart;
+			int posY = arg0.getY() - positionYDepart;
+			
+			Commande c = new CommandeTranslation(model,posX,posY);
+			controleur.executerCommande(c);
+			estDansMemeVue = false;
+		}
+
 	}
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent arg0) {
 		// TODO Auto-generated method stub
-		model.effectuerZoom();
+		int notches = arg0.getWheelRotation();
+		
+		if(notches < 0)
+		{
+			Commande c = new CommandeZoom(model,true);
+			controleur.executerCommande(c);
+			
+		}
+		else
+		{
+			Commande c = new CommandeZoom(model,false);
+			controleur.executerCommande(c);
+		}
 	}
 }

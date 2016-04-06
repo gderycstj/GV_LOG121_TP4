@@ -20,6 +20,22 @@ public class ControleurPerspective {
 		model = m;
 	}
 	
+	public void executerCommande(Commande commande)
+	{
+		commande.execute();
+		GestionnaireCommande.getInstance().AjouterCommande(commande);	
+	}
+	
+	public void defaireCommande()
+	{
+		GestionnaireCommande.getInstance().defaireCommande();
+	}
+	
+	
+	public void initialiserPath(String path)
+	{
+		model.setPath(path);
+	}
 	
 	
 	

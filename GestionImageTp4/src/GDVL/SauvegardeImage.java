@@ -16,10 +16,10 @@ import java.io.Serializable;
 
 public class SauvegardeImage implements Serializable{
 	String PathImage;
-	int Zoom;
+	float Zoom;
 	int Translation;
 	
-	SauvegardeImage(String PathImage,int Zoom,int Translation)
+	SauvegardeImage(String PathImage,float Zoom,int Translation)
 	{
 		this.PathImage = PathImage;
 		this.Zoom = Zoom;
@@ -30,7 +30,7 @@ public class SauvegardeImage implements Serializable{
 		this.PathImage = PathImage;
 	}
 	
-	public void setZoom(int Zoom){
+	public void setZoom(float Zoom){
 		this.Zoom = Zoom;
 	}
 	

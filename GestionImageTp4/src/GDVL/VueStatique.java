@@ -19,12 +19,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.border.TitledBorder;
 
-public class VueStatique extends JComponent{
+public class VueStatique extends JComponent {
 	/**
 	 * 
 	 */
@@ -58,4 +60,5 @@ public class VueStatique extends JComponent{
 			 }  
 		}
 	}
+
 }

@@ -76,7 +76,7 @@ public class MenuFenetre extends JMenuBar{
 					  String PathSauvegarde = "";
 					  int resultat = -1;
 					  fileChooser = new JFileChooser();
-					  FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichier csv","csv");
+					  FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichier csv/txt","csv","txt");
 					  fileChooser.addChoosableFileFilter(filter);
 					  fileChooser.setAcceptAllFileFilterUsed(false);
 					  fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -86,13 +86,13 @@ public class MenuFenetre extends JMenuBar{
 					  while(resultat == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile().getAbsolutePath().contains(".csv")== false)
 					  {
 						  //path ou on va enregistrer le fichier
-						  if(fileChooser.getSelectedFile().getAbsolutePath().contains(".csv") == false)
+						  if(fileChooser.getSelectedFile().getAbsolutePath().contains(".csv") == false || fileChooser.getSelectedFile().getAbsolutePath().contains(".txt") == false )
 						  {
-							  JOptionPane.showMessageDialog(null,"Le fichier que vous souhaitez créer doit être de type .csv");
+							  JOptionPane.showMessageDialog(null,"Le fichier que vous souhaitez créer doit être de type .csv ou .txt");
 							  resultat = fileChooser.showOpenDialog(menuBar);
 						  }
 					  }
-					  if(resultat == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile().getAbsolutePath().contains(".csv")== true)
+					  if(resultat == JFileChooser.APPROVE_OPTION && (fileChooser.getSelectedFile().getAbsolutePath().contains(".csv")== true || fileChooser.getSelectedFile().getAbsolutePath().contains(".txt")== true))
 					  {
 						  PathSauvegarde = fileChooser.getSelectedFile().getAbsolutePath();
 						  //On peut lancer l'objet de sauvegarde
@@ -137,7 +137,7 @@ public class MenuFenetre extends JMenuBar{
 		menuItemCommande.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		menuItemCommande.addActionListener(new ActionListener(){
 			  public void actionPerformed(ActionEvent arg0) {
-				  
+				  GestionnaireCommande.getInstance().defaireCommande();
 			  }
 		});
 		menuCommande.add(menuItemCommande);

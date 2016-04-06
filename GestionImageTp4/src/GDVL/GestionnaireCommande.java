@@ -44,7 +44,10 @@ public class GestionnaireCommande {
 			  pos--;
 			  listeCommande.get(pos).undo();
 		  }
-		  
+		  else
+		  {
+			  listeCommande.clear();
+		  }
 	  }
 	  
 	  

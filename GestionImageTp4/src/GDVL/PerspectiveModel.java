@@ -12,30 +12,39 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
-import java.util.ArrayList;
+
 import java.util.Observable;
 
 
 public class PerspectiveModel extends Observable {
 	
-	private int niveauZoom;
+	private float niveauZoom;
 	private int degreTranslation; 
-	
+	private int translationX;
+	private int translationY;
+	private static int MIN_SIZE = -230;
+	private static int MAX_SIZE = 230;
+	String name;
 	String Path;
 	
-	PerspectiveModel()
+	PerspectiveModel(String name)
 	{
 		this.Path = "";
 		this.niveauZoom = 1;
 		this.degreTranslation = 0;
+		this.translationX = 0;
+		this.translationY = 0;
+		this.name = name;
 	}
 	
 	  
 	public void setPath(String pathImage)
 	{
 		this.Path = pathImage;
-		niveauZoom = 1;
+		this.niveauZoom = 1;
 		degreTranslation = 0;
+		this.translationX = 0;
+		this.translationY = 0;
 		setChanged();
 		notifyObservers();
 	}
@@ -48,40 +57,51 @@ public class PerspectiveModel extends Observable {
 		return degreTranslation;
 	}
 
-	public int getNiveauZoom(){
+	public int getTranslationX()
+	{
+		return translationX;
+	}
+	public int getTranslationY()
+	{
+		return translationY;
+	}
+	public float getNiveauZoom(){
 		return niveauZoom;
 	}
 	
+	
 	public void effectuerZoom()
 	{
-		niveauZoom+=1;
-		System.out.println("Niveau Zoom: " + niveauZoom);
+		niveauZoom+=0.3;
 		setChanged();
 		notifyObservers();
+		System.out.println("je suis dans " + name);
 	}
 	
 	public void effectuerZoomContraire()
 	{
-		niveauZoom-=20;
-		System.out.println("Niveau Zoom: " + niveauZoom);
+		niveauZoom-=0.3;
 		setChanged();
 		notifyObservers();
+		System.out.println("je suis dans " + name);
 	}
 	
-	public void effectuerTranslation()
+	public void effectuerTranslation(int posX,int posY)
 	{
-		degreTranslation+=20;
-		System.out.println("Niveau Translation: " + degreTranslation);
+		this.translationX+=posX;
+		this.translationY+=posY;
+		
 		setChanged();
 		notifyObservers();
 		
 	}
 	
-	public void effectuerTranslationContraire()
+	public void effectuerTranslationContraire(int posX,int posY)
 	{
-		degreTranslation-=20;
-		System.out.println("Niveau Translation: " + degreTranslation);
-		//notifyObserveur();
+		this.translationX = translationX - posX;
+		this.translationY = translationY - posY;
+		setChanged();
+		notifyObservers();
 	}
 }
 
