@@ -29,10 +29,11 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Vue permettant de Zoom/UnZoom et d'effectuer des translations sur les images présentes dans celle-ci.
+ *
+ */
 public class VuePerspective extends JComponent implements Observer, MouseListener, MouseWheelListener{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1279976614214775078L;
 	private static final Dimension DIMENSION = new Dimension(300,300);
 	private ControleurPerspective controleur;
@@ -46,6 +47,9 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 		InitUI();
 	}
 	
+	/**
+	 * Initialise les aspects de base de la vue (taille , listener , bordure).
+	 */
 	private void InitUI()
 	{
 		setLayout(null);
@@ -56,17 +60,27 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	    this.addMouseWheelListener(this);
 		this.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	}
+	
+	/**
+	 * Retourne la dimension de la vue
+	 */
 	@Override 
 	public Dimension getPreferredSize(){
 		return DIMENSION;
 	}
 
-	
+	/**
+	 * Récupère le chemin vers l'image qui sera affichée dans la vue.
+	 * @param image : chemin vers l'image.
+	 */
 	public void setPath(String image)
 	{
 		controleur.initialiserPath(image);
 	}
 	
+	/**
+	 * Méthode permettant d'effectuer les changements visuels.
+	 */
 	public void paintComponent(Graphics g){
 
 		 if(model.getPath() != "")
@@ -83,18 +97,48 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 		}
 	}
 	
+	/**
+	 * @return Le chemin vers l'image.
+	 */
 	public String getPath(){
 		return model.getPath();
 	}
 	
+	/**
+	 * @return La valeur du zoom effectué sur l'image.
+	 */
 	public float getZoom(){
 		return model.getNiveauZoom();
 	}
 	
+	/**
+	 * @return La valeur de la translation effectuée sur l'image.
+	 */
 	public int getTranslation(){
 		return model.getTranslation();
 	}
+	
+	/**
+	 * 
+	 * @return Le model lié à la vue contenant toutes les informations (Nécéssaire à la sauvegarde).
+	 */
+	public PerspectiveModel getModel()
+	{
+		return model;
+	}
+	
+	/**
+	 * Permet d'ajouter un model contenant déj des informations à la vue (Nécessaire au chargement de sauvegarde.
+	 * @param m : Model que l'on souhaite ajouter.
+	 */
+	public void setModel(PerspectiveModel m)
+	{
+		model = m;
+	}
 
+	/**
+	 * Évènement effectué a chaque fois qu'il y a une modification dans la vue.
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub

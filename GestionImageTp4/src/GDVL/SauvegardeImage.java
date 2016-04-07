@@ -12,34 +12,32 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * Classe permettant de sauvegarder dans un fichier serialiser le modèle contenant les informations sur l'image modifiée.
+ */
 public class SauvegardeImage implements Serializable{
-	String PathImage;
-	float Zoom;
-	int Translation;
-	
-	SauvegardeImage(String PathImage,float Zoom,int Translation)
+	private static final long serialVersionUID = 1196443516682880758L;
+
+	/**
+	 * @param nomFichier : Nom du fichier de sauvegarde qui sera créer.
+	 * @param vue : Vue de laquelle provient les informations de l'image.
+	 */
+	SauvegardeImage(String nomFichier,VuePerspective vue)
 	{
-		this.PathImage = PathImage;
-		this.Zoom = Zoom;
-		this.Translation = Translation;
-	}
-	
-	public void setPathImage(String PathImage){
-		this.PathImage = PathImage;
-	}
-	
-	public void setZoom(float Zoom){
-		this.Zoom = Zoom;
-	}
-	
-	public void setTranslation(int Translation){
-		this.Translation = Translation;
-	}
-	
-	@Override
-	public String toString() {
-	return "Image [PathImage=" + this.PathImage + ", Zoom=" + this.Zoom + " Translation="+this.Translation +"]";
+		 PerspectiveModel instance = vue.getModel();
+		 try
+		 {
+	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(nomFichier)));
+	        oos.writeObject(instance);
+	        oos.close();
+		 }catch(Exception e)
+		 {
+			 System.out.println(e);
+		 }
 	}
 }
