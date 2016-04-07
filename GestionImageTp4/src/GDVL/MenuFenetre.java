@@ -104,13 +104,17 @@ public class MenuFenetre extends JMenuBar{
 					  String nomFichier = fileChooser.getSelectedFile().getAbsolutePath();
 					  Object[] options = {"Image Gauche","Image Droite"};
 					  int choixVue= JOptionPane.showOptionDialog(null,"Choissisez dans quel espace sera afficher l'image.","Question",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
-					  if(choixVue == 1)
+					  if(choixVue == 0)
 					  {
 						  ChargerSauvegarde load = new ChargerSauvegarde(nomFichier,v1p);
+						  vs.setPath(v1p.getPath());
+						  v2p.setPath(v1p.getPath());
 					  }
 					  else
 					  {
 						  ChargerSauvegarde load = new ChargerSauvegarde(nomFichier,v2p);
+						  vs.setPath(v2p.getPath());
+						  v1p.setPath(v2p.getPath());
 					  }
 					  JOptionPane.showMessageDialog(null, "Chargement terminé.");
 				  }

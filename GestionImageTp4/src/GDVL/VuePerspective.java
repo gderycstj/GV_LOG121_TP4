@@ -88,7 +88,6 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 			  try {
 			   BufferedImage  image = ImageIO.read(new File(model.getPath()));
 			   float largeurZoom = 300*model.getNiveauZoom();
-			   
 			  g.drawImage(image, 0 + model.getTranslationX(),0+model.getTranslationY(),Math.round(largeurZoom),Math.round(largeurZoom),null);
 			  } catch (IOException e) {
 			   // TODO Auto-generated catch block
@@ -134,6 +133,8 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	public void setModel(PerspectiveModel m)
 	{
 		model = m;
+		model.setPath(m.getPath(),false);
+		repaint();
 	}
 
 	/**
@@ -169,7 +170,6 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 		// TODO Auto-generated method stub
 		positionXDepart = arg0.getX();
 		positionYDepart = arg0.getY();
-		System.out.println("je suis dans le mouse press");
 		estDansMemeVue = true;
 	}
 

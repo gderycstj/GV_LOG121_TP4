@@ -13,6 +13,7 @@ Historique des modifications
 package GDVL;
 
 
+import java.io.Serializable;
 import java.util.Observable;
 
 
@@ -20,7 +21,7 @@ import java.util.Observable;
  * Modèle qui contient les données des images
  *
  */
-public class PerspectiveModel extends Observable {
+public class PerspectiveModel extends Observable implements Serializable{
 	
 	private float niveauZoom;
 	private int degreTranslation; 
@@ -47,13 +48,16 @@ public class PerspectiveModel extends Observable {
 	 * initialise le path et met toutes les données de l'image à 0
 	 * @param pathImage
 	 */
-	public void setPath(String pathImage)
+	public void setPath(String pathImage,boolean reset)
 	{
 		this.Path = pathImage;
-		this.niveauZoom = 1;
-		degreTranslation = 0;
-		this.translationX = 0;
-		this.translationY = 0;
+		if(reset == true)
+		{
+			this.niveauZoom = 1;
+			degreTranslation = 0;
+			this.translationX = 0;
+			this.translationY = 0;
+		}
 		setChanged();
 		notifyObservers();
 	}

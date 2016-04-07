@@ -53,7 +53,7 @@ public class ControleurPerspective {
 	 */
 	public void initialiserPath(String path)
 	{
-		model.setPath(path);
+		model.setPath(path,true);
 	}
 	
 	
