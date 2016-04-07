@@ -75,7 +75,7 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	 */
 	public void setPath(String image)
 	{
-		controleur.initialiserPath(image);
+		controleur.initialiserPath(image,true);
 	}
 	
 	/**
@@ -111,13 +111,6 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	}
 	
 	/**
-	 * @return La valeur de la translation effectuée sur l'image.
-	 */
-	public int getTranslation(){
-		return model.getTranslation();
-	}
-	
-	/**
 	 * 
 	 * @return Le model lié à la vue contenant toutes les informations (Nécéssaire à la sauvegarde).
 	 */
@@ -133,8 +126,7 @@ public class VuePerspective extends JComponent implements Observer, MouseListene
 	public void setModel(PerspectiveModel m)
 	{
 		model = m;
-		model.setPath(m.getPath(),false);
-		repaint();
+		controleur.initialiserPath(m.getPath(),false);
 	}
 
 	/**

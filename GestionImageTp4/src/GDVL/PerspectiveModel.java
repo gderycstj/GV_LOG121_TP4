@@ -24,23 +24,19 @@ import java.util.Observable;
 public class PerspectiveModel extends Observable implements Serializable{
 	
 	private float niveauZoom;
-	private int degreTranslation; 
 	private int translationX;
 	private int translationY;
 	private static int MIN_SIZE = -230;
 	private static int MAX_SIZE = 230;
-	String name;
 	String Path;
 	
 
-	PerspectiveModel(String name)
+	PerspectiveModel()
 	{
 		this.Path = "";
 		this.niveauZoom = 1;
-		this.degreTranslation = 0;
 		this.translationX = 0;
 		this.translationY = 0;
-		this.name = name;
 	}
 	
 	  
@@ -54,7 +50,6 @@ public class PerspectiveModel extends Observable implements Serializable{
 		if(reset == true)
 		{
 			this.niveauZoom = 1;
-			degreTranslation = 0;
 			this.translationX = 0;
 			this.translationY = 0;
 		}
@@ -65,11 +60,7 @@ public class PerspectiveModel extends Observable implements Serializable{
 	public String getPath(){
 		return this.Path;
 	}
-	
 
-	public int getTranslation(){
-		return degreTranslation;
-	}
 
 	public int getTranslationX()
 	{
@@ -92,7 +83,6 @@ public class PerspectiveModel extends Observable implements Serializable{
 		niveauZoom+=0.3;
 		setChanged();
 		notifyObservers();
-		System.out.println("je suis dans " + name);
 	}
 	
 	/**
@@ -103,7 +93,6 @@ public class PerspectiveModel extends Observable implements Serializable{
 		niveauZoom-=0.3;
 		setChanged();
 		notifyObservers();
-		System.out.println("je suis dans " + name);
 	}
 	
 	/**

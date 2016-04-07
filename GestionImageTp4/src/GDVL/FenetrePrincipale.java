@@ -32,8 +32,8 @@ public class FenetrePrincipale extends JFrame {
 		setResizable(false);
 		VueStatique vueStatique = new VueStatique();		
 		//Instanciation du modèle
-	    PerspectiveModel Pers = new PerspectiveModel("model 1");
-	    PerspectiveModel Pers2 = new PerspectiveModel("model 2");
+	    PerspectiveModel Pers = new PerspectiveModel();
+	    PerspectiveModel Pers2 = new PerspectiveModel();
 	    //Création du contrôleur
 	    ControleurPerspective controleur1 = new ControleurPerspective(Pers);
 	    ControleurPerspective controleur2 = new ControleurPerspective(Pers2);

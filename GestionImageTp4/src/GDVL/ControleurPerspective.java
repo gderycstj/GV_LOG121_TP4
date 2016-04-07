@@ -51,9 +51,9 @@ public class ControleurPerspective {
 	 * Va initialiser le path du modèle
 	 * @param path emplacement du modèle sur le disque
 	 */
-	public void initialiserPath(String path)
+	public void initialiserPath(String path,boolean reset)
 	{
-		model.setPath(path,true);
+		model.setPath(path,reset);
 	}
 	
 	
