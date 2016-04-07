@@ -15,6 +15,10 @@ package GDVL;
 import java.util.ArrayList;
 import java.util.Observable;
 
+/**
+ * Classe qui contient l'image statique
+ *
+ */
 public class ImageStatiqueModel extends Observable {
 	
 	String Path;
@@ -23,6 +27,10 @@ public class ImageStatiqueModel extends Observable {
 	{
 		Path = "";
 	}
+	/**
+	 * initialise le path de l'image statique
+	 * @param pathImage string contenant le chemin de l'image
+	 */
 	public void setPath(String pathImage)
 	{
 		Path = pathImage;

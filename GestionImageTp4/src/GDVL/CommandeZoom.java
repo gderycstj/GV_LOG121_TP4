@@ -12,11 +12,21 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
+/**
+ * Commande pour le zoom
+ * @author pc
+ *
+ */
 public class CommandeZoom implements Commande {
 	
 	PerspectiveModel model;
 	Boolean typeZoom;
 	
+	/**
+	 * 
+	 * @param model modèle de la vue à zoomer
+	 * @param typeZoom true si on zoom false si on dezoom
+	 */
 	public CommandeZoom(PerspectiveModel model,Boolean typeZoom)
 	{
 		this.typeZoom = typeZoom;

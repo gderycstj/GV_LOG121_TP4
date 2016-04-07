@@ -12,12 +12,22 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
+/**
+ *Commande pour éffectuer une translation
+ *
+ */
 public class CommandeTranslation implements Commande {
 
 	PerspectiveModel model;
 	int posX;
 	int posY;
 	
+	/**
+	 * Constructeur de la translation
+	 * @param model model de la vue a translater
+	 * @param posX déplacement en x pour la translation
+	 * @param posY déplacement en y pour la translation
+	 */
 	CommandeTranslation(PerspectiveModel model,int posX,int posY)
 	{
 		this.model = model;

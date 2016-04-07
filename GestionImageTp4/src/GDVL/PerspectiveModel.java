@@ -16,6 +16,10 @@ package GDVL;
 import java.util.Observable;
 
 
+/**
+ * Modèle qui contient les données des images
+ *
+ */
 public class PerspectiveModel extends Observable {
 	
 	private float niveauZoom;
@@ -27,6 +31,7 @@ public class PerspectiveModel extends Observable {
 	String name;
 	String Path;
 	
+
 	PerspectiveModel(String name)
 	{
 		this.Path = "";
@@ -38,6 +43,10 @@ public class PerspectiveModel extends Observable {
 	}
 	
 	  
+	/**
+	 * initialise le path et met toutes les données de l'image à 0
+	 * @param pathImage
+	 */
 	public void setPath(String pathImage)
 	{
 		this.Path = pathImage;
@@ -53,6 +62,7 @@ public class PerspectiveModel extends Observable {
 		return this.Path;
 	}
 	
+
 	public int getTranslation(){
 		return degreTranslation;
 	}
@@ -70,6 +80,9 @@ public class PerspectiveModel extends Observable {
 	}
 	
 	
+	/**
+	 * Va aggrandir le zoom et mettre à jour la vue
+	 */
 	public void effectuerZoom()
 	{
 		niveauZoom+=0.3;
@@ -78,6 +91,9 @@ public class PerspectiveModel extends Observable {
 		System.out.println("je suis dans " + name);
 	}
 	
+	/**
+	 * va dézoomer et mettre à jour la vue
+	 */
 	public void effectuerZoomContraire()
 	{
 		niveauZoom-=0.3;
@@ -86,6 +102,11 @@ public class PerspectiveModel extends Observable {
 		System.out.println("je suis dans " + name);
 	}
 	
+	/**
+	 * Va effectuer la translation
+	 * @param posX translation en x
+	 * @param posY translation en y
+	 */
 	public void effectuerTranslation(int posX,int posY)
 	{
 		this.translationX+=posX;
@@ -96,6 +117,11 @@ public class PerspectiveModel extends Observable {
 		
 	}
 	
+	/**
+	 * Va annuler la translation
+	 * @param posX translation en x
+	 * @param posY translation en y
+	 */
 	public void effectuerTranslationContraire(int posX,int posY)
 	{
 		this.translationX = translationX - posX;

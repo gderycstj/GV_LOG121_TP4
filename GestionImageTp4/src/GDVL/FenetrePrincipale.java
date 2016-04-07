@@ -18,6 +18,10 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
+/**
+ * fenêtre qui regroupe les vues et le menu
+ *
+ */
 public class FenetrePrincipale extends JFrame {
 	/**
 	 * 

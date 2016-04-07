@@ -12,9 +12,19 @@ Historique des modifications
 *******************************************************/  
 package GDVL;
 
+/**
+ * Interface abstraite qui dit la structure d'une commande
+ *
+ */
 public interface Commande {
 
+	/**
+	 * Méthode qui exécute la commande
+	 */
 	public void execute();
 	
+	/**
+	 * Méthode qui va défaire la commande
+	 */
 	public void undo();
 }

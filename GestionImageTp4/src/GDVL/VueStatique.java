@@ -26,6 +26,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Classe qui contient la vue statique
+ * @author pc
+ *
+ */
 public class VueStatique extends JComponent {
 	/**
 	 * 
@@ -33,10 +38,15 @@ public class VueStatique extends JComponent {
 	private static final long serialVersionUID = 7010702140699097203L;
 	public static final Dimension DIMENSION = new Dimension(250,250);
 	private String Path = "";
+	
 	VueStatique(){
 		this.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	}
 	
+	/**
+	 * initialise le path de l'image
+	 * @param images
+	 */
 	public void setPath(String images)
 	{
 		Path = images;
@@ -48,6 +58,9 @@ public class VueStatique extends JComponent {
 		return DIMENSION;
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics g){
 		if (Path != "")
 		{
