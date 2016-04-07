@@ -21,7 +21,7 @@ public class GestionnaireCommande {
 	  
 
 	  private GestionnaireCommande(){
-		  int pos = 0;
+		  pos = 0;
 	  }
 	  
 	  private static GestionnaireCommande INSTANCE = new GestionnaireCommande();
@@ -34,7 +34,7 @@ public class GestionnaireCommande {
 	  public void AjouterCommande(Commande commande)
 	  {
 		  listeCommande.add(commande);
-		  pos++;
+		  pos = listeCommande.size();
 	  }
 	  
 	  public void defaireCommande()
@@ -43,10 +43,7 @@ public class GestionnaireCommande {
 		  {
 			  pos--;
 			  listeCommande.get(pos).undo();
-		  }
-		  else
-		  {
-			  listeCommande.clear();
+			  listeCommande.remove(pos);
 		  }
 	  }
 	  
